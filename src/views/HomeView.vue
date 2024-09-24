@@ -1,33 +1,28 @@
 <template>
   <div class="home">
-    Home
-    <p>My name is {{ name }}, my age is {{ age }}</p>
-    <button @click="handleClick">Click Me! I Dare you!</button>
-    <button @click="age++">Add one to age</button>
-    <input type="text" v-model="name">
+    <h1>Home</h1>>
+    <input type="text" v-model="search">
+    <p>search term - {{ search }}</p>
+    <div v-for="name in matchingnames" :key="name">{{ name }}</div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
-
-// @ is an alias to /src
+import { computed, ref } from 'vue'
 
 export default {
   name: 'HomeView',
   setup() {
 
-    // const p = ref(null) // instead of this.$ref
-    // let name='Mario'  // Will not be reactive
-    const name = ref('Mario')  // makes name reactive
-    const age = ref(30)
+     const search = ref('')
+     const names = ref(['Joe', 'Jean', 'Carl','Ingrid','Alfred','Albert','Franz','Beethoven','Bert','Ernie','Liza'])
 
-    const handleClick = () => {
-      name.value = 'Luigi'
-      age.value=35
-    }
-
-    return { name, age, handleClick}
+     const matchingnames = computed(() => {
+      return names.value.filter((name) => name.includes(search.value))
+     })
+     
+      return { names, matchingnames, search }
+    
   }
 }
 </script>
