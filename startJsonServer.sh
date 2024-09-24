@@ -1,2 +1,2 @@
-npx json-server --watch -p 3300 data/db.json
+npx json-server  -p 3300 -w data/db.json
 

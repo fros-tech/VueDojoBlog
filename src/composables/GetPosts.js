@@ -11,11 +11,9 @@ const getPosts = () => {
           throw Error('no data available')
         }
         posts.value = await data.json()
-        console.log(data)
       }
       catch (err) {
         error.value = err.message
-        console.log(error.value)
       }
     } 
     return { posts, error, load }
